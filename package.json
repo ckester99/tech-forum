@@ -5,7 +5,9 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "seed": "node seeds/index.js"
+        "seed": "node seeds/index.js",
+        "prestart": "cd ./config && npx tailwindcss -i ../src/style.css -o ../public/style.css && cd..",
+        "start": "node ./server.js"
     },
     "repository": {
         "type": "git",
@@ -26,5 +28,8 @@
         "express-session": "^1.17.3",
         "mysql2": "^3.0.1",
         "sequelize": "^6.28.0"
+    },
+    "devDependencies": {
+        "tailwindcss": "^3.2.4"
     }
 }
