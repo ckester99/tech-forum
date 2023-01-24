@@ -7,19 +7,23 @@
         <title>Document</title>
     </head>
 
-    <header class="bg-gray-900">
-        <nav class="text-green-500 flex justify-start">
-            <a class="pt-4 pl-6 pr-4 text-lg" href="/home">Home</a>
-            <a class="pt-4 px-4 text-lg" href="/dashboard">Dashboard</a>
-            <a class="pt-4 px-4 text-lg" href="/login">Login</a>
-        </nav>
-        <h1
-            class="bg-green-500 text-gray-900 inline-block font-bold text-4xl px-6 pt-4 pb-6 ml-8 my-4 rounded-md shadow-slate-500"
-            style="box-shadow: 5px 5px #64748b;"
-        >The Tech Forum</h1>
-    </header>
     <body class="bg-green-300">
-        {{{body}}}
+        <header class="bg-gray-900">
+            <nav class="text-green-500 flex justify-start">
+                <a class="pt-4 pl-6 pr-4 text-lg" href="/home">Home</a>
+                <a class="pt-4 px-4 text-lg" href="/dashboard">Dashboard</a>
+                <a class="pt-4 px-4 text-lg" href="/login">Login</a>
+            </nav>
+            <h1
+                class="bg-green-500 text-gray-900 inline-block font-bold text-4xl px-6 pt-4 pb-6 ml-8 my-4 rounded-md shadow-slate-500"
+                style="box-shadow: 5px 5px #64748b;"
+            >The Tech Forum</h1>
+        </header>
+
+        <section class="px-16 py-13">
+            {{{body}}}
+        </section>
+
     </body>
 
 </html>
