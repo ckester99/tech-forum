@@ -11,7 +11,7 @@ ForumPost.init(
 
         content: { type: DataTypes.STRING, allowNull: false },
 
-        user_id: { type: DataTypes.INTEGER, allowNull: false },
+        user_id: { type: DataTypes.INTEGER, allowNull: false, references: { model: "user", key: "id" } },
 
         timestamp: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
     },
