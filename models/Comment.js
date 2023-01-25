@@ -15,7 +15,7 @@ Comment.init(
 
         timestamp: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
     },
-    { sequelize, modelName: "forum_post", freezeTableName: true }
+    { sequelize, modelName: "comment", freezeTableName: true }
 );
 
 module.exports = Comment;

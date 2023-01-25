@@ -3,6 +3,8 @@ const User = require("./User");
 const ForumPost = require("./ForumPost");
 const Comment = require("./Comment");
 
+console.log(ForumPost);
+
 User.hasMany(ForumPost, { foreignKey: "user_id" });
 ForumPost.belongsTo(User);
 
