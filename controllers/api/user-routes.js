@@ -21,16 +21,15 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
     /* 
-req body should look like:
-{
-    username: "username string",
-    password: "password string"
-}
-*/
+    req body should look like:
+    {
+        username: "username string",
+        password: "password string"
+    }
+    */
 
     try {
-        console.log(req.body);
-        const hashedPassword = req.body.password;
+        const hashedPassword = req.body.password; //todo: hash password
         const newUser = { username: req.body.username, hashed_password: hashedPassword };
 
         await User.create(newUser);
