@@ -9,7 +9,7 @@ User.init(
 
         username: { type: DataTypes.STRING, unique: true },
 
-        hashedPassword: { type: DataTypes.STRING },
+        hashed_password: { type: DataTypes.STRING },
     },
     { sequelize, modelName: "user", freezeTableName: true }
 );

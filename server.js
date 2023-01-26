@@ -13,6 +13,8 @@ app.set("view engine", "handlebars");
 app.set("views", "./views");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(routes);
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => {
