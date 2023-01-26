@@ -3,8 +3,8 @@ const { User, ForumPost, Comment } = require("../../models");
 
 router.get("/", async (req, res) => {
     try {
-        const forumPosts = await ForumPost.findAll({ include: Comment });
-        res.json(forumPosts);
+        const comments = await Comment.findAll({ include: ForumPost });
+        res.json(comments);
     } catch (err) {
         res.status(400).json(err);
     }
@@ -12,8 +12,8 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     try {
-        const forumPost = await ForumPost.findByPk(req.params.id, { include: Comment });
-        res.json(forumPost);
+        const comment = await Comment.findByPk(req.params.id, { include: ForumPost });
+        res.json(comment);
     } catch (err) {
         res.status(400).json(err);
     }
@@ -24,20 +24,20 @@ router.post("/", async (req, res) => {
         /* 
     req body should look like:
     {
-        title: "username string",
         content: "password string",
         user_id: "user id string" WILL BE REMOVED ONCE USER AUTH
+        post_id: "post id"
     }
     */
 
-        const newForumPost = {
-            title: req.body.title,
+        const newComment = {
             content: req.body.content,
             user_id: req.body.user_id, // This will need to be grabbed from session once user auth
+            post_id: req.body.post_id,
         };
 
-        await ForumPost.create(newForumPost);
-        res.send("New post created successfully!");
+        await Comment.create(newComment);
+        res.send("New comment created successfully!");
     } catch (err) {
         res.status(400).json(err);
     }
@@ -46,8 +46,8 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         //need to verify that session user id matches user id on post
-        await ForumPost.destroy({ where: { id: req.params.id } });
-        res.send("Post deleted successfully!");
+        await Comment.destroy({ where: { id: req.params.id } });
+        res.send("Comment deleted successfully!");
     } catch (err) {
         res.status(400).json(err);
     }
