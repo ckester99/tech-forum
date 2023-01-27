@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User, ForumPost, Comment } = require("../../models");
+const { withAuth } = require("../../utils/auth");
 
 router.get("/", async (req, res) => {
     try {
@@ -19,23 +20,22 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
     try {
         /* 
     req body should look like:
     {
         content: "password string",
-        user_id: "user id string" WILL BE REMOVED ONCE USER AUTH
         post_id: "post id"
     }
     */
 
         const newComment = {
             content: req.body.content,
-            user_id: req.body.user_id, // This will need to be grabbed from session once user auth
+            user_id: req.session.user_id,
             post_id: req.body.post_id,
         };
-
+        console.log(newComment.user_id);
         await Comment.create(newComment);
         res.send("New comment created successfully!");
     } catch (err) {
@@ -46,9 +46,13 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         //need to verify that session user id matches user id on post
+        /*if (! (req.params.id == getUserId())){
+
+        }*/
         await Comment.destroy({ where: { id: req.params.id } });
         res.send("Comment deleted successfully!");
     } catch (err) {
+        console.log(err);
         res.status(400).json(err);
     }
 });
