@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User, ForumPost, Comment } = require("../../models");
+const { withAuth } = require("../../utils/auth");
 
 router.get("/", async (req, res) => {
     try {
@@ -19,21 +20,20 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
     try {
         /* 
     req body should look like:
     {
         title: "username string",
         content: "password string",
-        user_id: "user id string" WILL BE REMOVED ONCE USER AUTH
     }
     */
 
         const newForumPost = {
             title: req.body.title,
             content: req.body.content,
-            user_id: req.body.user_id, // This will need to be grabbed from session once user auth
+            user_id: req.session.user_id,
         };
 
         await ForumPost.create(newForumPost);
@@ -46,8 +46,15 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         //need to verify that session user id matches user id on post
-        await ForumPost.destroy({ where: { id: req.params.id } });
-        res.send("Post deleted successfully!");
+        const user_id = req.session.user_id;
+        const forumPostData = await ForumPost.findByPk(req.params.id);
+
+        if (user_id == forumPostData.user_id) {
+            await ForumPost.destroy({ where: { id: req.params.id } });
+            res.send("Post deleted successfully!");
+        } else {
+            res.send("Post was not made by user!");
+        }
     } catch (err) {
         res.status(400).json(err);
     }

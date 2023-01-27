@@ -49,13 +49,11 @@ router.delete("/:id", withAuth, async (req, res) => {
         const user_id = req.session.user_id;
         const commentData = await Comment.findByPk(req.params.id);
 
-        console.log(user_id);
-        console.log(commentData.user_id);
-        if (!(user_id == commentData.user_id)) {
-            res.send("User did not post this comment!");
-        } else {
+        if (user_id == commentData.user_id) {
             await Comment.destroy({ where: { id: req.params.id } });
             res.send("Comment deleted successfully!");
+        } else {
+            res.send("User did not post this comment!");
         }
     } catch (err) {
         console.log(err);
