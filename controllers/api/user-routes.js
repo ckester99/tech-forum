@@ -39,4 +39,32 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.post("/login", async (req, res) => {
+    try {
+        /* 
+    req body should look like:
+    {
+        username: "username string",
+        password: "password string"
+    }
+    */
+        const user = await User.findOne({ where: { username: req.body.username } });
+        const validPass = req.body.password == (await user.hashed_password);
+
+        if (!user || !validPass) {
+            console.log("Username incorrect!");
+            throw new Error("Username or password is incorrect!");
+        }
+
+        req.session.save(() => {
+            req.session.user_id = user.id;
+        });
+
+        res.send("Logged in successfully!");
+    } catch (err) {
+        console.log(err);
+        res.status(400).send(err.message);
+    }
+});
+
 module.exports = router;
