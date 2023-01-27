@@ -43,14 +43,20 @@ router.post("/", withAuth, async (req, res) => {
     }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
     try {
         //need to verify that session user id matches user id on post
-        /*if (! (req.params.id == getUserId())){
+        const user_id = req.session.user_id;
+        const commentData = await Comment.findByPk(req.params.id);
 
-        }*/
-        await Comment.destroy({ where: { id: req.params.id } });
-        res.send("Comment deleted successfully!");
+        console.log(user_id);
+        console.log(commentData.user_id);
+        if (!(user_id == commentData.user_id)) {
+            res.send("User did not post this comment!");
+        } else {
+            await Comment.destroy({ where: { id: req.params.id } });
+            res.send("Comment deleted successfully!");
+        }
     } catch (err) {
         console.log(err);
         res.status(400).json(err);

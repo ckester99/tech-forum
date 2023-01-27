@@ -8,13 +8,4 @@ const withAuth = (req, res, next) => {
     }
 };
 
-const getUserId = async (req, res) => {
-    const userId = req.session.user_id;
-    if (userId) {
-        return userId;
-    } else {
-        throw new Error("User not signed in");
-    }
-};
-
-module.exports = { withAuth, getUserId };
+module.exports = { withAuth };
