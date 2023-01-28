@@ -12,7 +12,12 @@
             <nav class="text-green-500 flex justify-start">
                 <a class="pt-4 pl-6 pr-4 text-lg" href="/home">Home</a>
                 <a class="pt-4 px-4 text-lg" href="/dashboard">Dashboard</a>
-                <a class="pt-4 px-4 text-lg" href="/login">Login</a>
+                {{#if user_id}}
+                    <a class="pt-4 px-4 text-lg" href="/login">Logout</a>
+                {{/if}}
+                {{#unless user_id}}
+                    <a class="pt-4 px-4 text-lg" href="/login">Login</a>
+                {{/unless}}
             </nav>
             <h1
                 class="bg-green-500 text-gray-900 inline-block font-bold text-4xl px-6 pt-4 pb-6 ml-8 my-4 rounded-md shadow-slate-500"
