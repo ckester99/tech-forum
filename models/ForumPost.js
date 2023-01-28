@@ -36,6 +36,4 @@ ForumPost.init(
     }
 );
 
-console.log(ForumPost);
-
 module.exports = ForumPost;
