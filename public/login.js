@@ -1,6 +1,6 @@
 const loginFormHandler = async (event) => {
     event.preventDefault();
-    console.log("here");
+
     const username = document.querySelector("#login-username").value.trim();
     const password = document.querySelector("#login-password").value.trim();
 
@@ -14,7 +14,7 @@ const loginFormHandler = async (event) => {
         if (response.ok) {
             document.location.replace("/");
         } else {
-            alert("Failed to log in");
+            alert(await response.text());
         }
     }
 };

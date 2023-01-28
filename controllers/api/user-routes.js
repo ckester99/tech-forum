@@ -56,9 +56,12 @@ router.post("/login", async (req, res) => {
     }
     */
         const user = await User.findOne({ where: { username: req.body.username } });
+        if (!user) {
+            throw new Error("Username or password is incorrect!");
+        }
         const validPass = await bcrypt.compare(req.body.password, user.hashed_password);
 
-        if (!user || !validPass) {
+        if (!validPass) {
             console.log("Username incorrect!");
             throw new Error("Username or password is incorrect!");
         }
