@@ -26,16 +26,13 @@ ForumPost.init(
             allowNull: false,
             references: { model: "user", key: "id" },
         },
-
-        timestamp: {
-            type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW,
-        },
     },
     {
         sequelize,
         modelName: "forum_post",
         freezeTableName: true,
+        createdAt: "timestamp",
+        updatedAt: false,
     }
 );
 

@@ -11,7 +11,7 @@ User.init(
 
         hashed_password: { type: DataTypes.STRING },
     },
-    { sequelize, modelName: "user", freezeTableName: true }
+    { sequelize, modelName: "user", freezeTableName: true, updatedAt: false }
 );
 
 module.exports = User;

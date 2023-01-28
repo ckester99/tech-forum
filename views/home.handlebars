@@ -1,3 +1,5 @@
-{{> blog-post}}
-{{> comment-card}}
-{{> comment-card}}
+{{#each forum_posts}}
+    {{> blog-post}}
+{{/each }}
+
+<script src="/linkToForumPost.js"></script>
