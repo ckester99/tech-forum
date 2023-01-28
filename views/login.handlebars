@@ -1,7 +1,7 @@
 <div class="mt-6 md:mt-16 flex justify-center flex-wrap gap-x-48 gap-y-6">
 
     <div class="w-full max-w-xs">
-        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 login-form">
             <h2 class="text-lg text-center mb-4 font-bold">Login</h2>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="login-username">
@@ -27,17 +27,17 @@
 
             </div>
             <div class="flex justify-center">
-                <input
+                <button
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
-                />
+                >Submit</button>
 
             </div>
         </form>
     </div>
 
     <div class="w-full max-w-xs">
-        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" id="signup-form">
             <h2 class="text-lg text-center mb-4 font-bold">Sign Up</h2>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-username">
@@ -63,13 +63,15 @@
 
             </div>
             <div class="flex justify-center">
-                <input
+                <button
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
-                />
+                />Submit</button>
 
             </div>
         </form>
     </div>
 
 </div>
+
+<script src="/login.js"></script>
