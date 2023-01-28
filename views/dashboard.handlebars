@@ -1,0 +1,9 @@
+{{#each posts_and_comments}}
+    {{#if this.post_id}}
+        {{> comment-card}}
+    {{/if}}
+
+    {{#unless this.post_id}}
+        {{> forum-post}}
+    {{/unless}}
+{{/each}}
