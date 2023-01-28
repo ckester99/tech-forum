@@ -13,7 +13,8 @@
                 <a class="pt-4 pl-6 pr-4 text-lg" href="/home">Home</a>
                 <a class="pt-4 px-4 text-lg" href="/dashboard">Dashboard</a>
                 {{#if user_id}}
-                    <a class="pt-4 px-4 text-lg" href="/login">Logout</a>
+                    <a class="pt-4 px-4 text-lg logout" href="#">Logout</a>
+                    <script src="/logout.js"></script>
                 {{/if}}
                 {{#unless user_id}}
                     <a class="pt-4 px-4 text-lg" href="/login">Login</a>
