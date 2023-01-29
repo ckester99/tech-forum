@@ -24,6 +24,10 @@ func = async () => {
                         "hover:cursor-pointer",
                         "delete-post"
                     );
+                    trashIcon.addEventListener("click", () => {
+                        fetch("/forum-post/" + post.getAttribute("post"), { method: "DELETE" });
+                        location.reload();
+                    });
                     contentDiv.appendChild(trashIcon);
                 }
             });
