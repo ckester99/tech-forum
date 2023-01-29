@@ -3,9 +3,8 @@ const { ForumPost, User, Comment } = require("../models");
 
 router.get("/:id", async (req, res) => {
     try {
-        const forumPost = await ForumPost.findByPk(req.params.id, { include: Comment });
+        const forumPost = await ForumPost.findByPk(req.params.id, { include: [User, Comment] });
         const forumPostPlain = forumPost.get({ plain: true });
-
         const comments = await Comment.findAll({ where: { post_id: req.params.id }, include: User });
         const commentsPlain = comments.map((comment) => comment.get({ plain: true }));
 
