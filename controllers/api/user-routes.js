@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { User, Comment, ForumPost } = require("../../models");
 const bcrypt = require("bcrypt");
+const session = require("express-session");
 
 router.get("/", async (req, res) => {
     try {
@@ -9,6 +10,10 @@ router.get("/", async (req, res) => {
     } catch (err) {
         res.status(400).json(err);
     }
+});
+
+router.get("/id", (req, res) => {
+    res.json(req.session.user_id);
 });
 
 router.get("/:id", async (req, res) => {
