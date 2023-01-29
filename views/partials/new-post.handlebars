@@ -1,0 +1,29 @@
+<form class="mt-4 rounded-md shadow-slate-500 shadow-lg" id="new-post-form">
+    <div class="bg-gray-900 flex justify-between items-center py-3 px-8 w-full text-gray-900 rounded-t-md">
+        <input
+            class="shadow appearance-none border rounded w-full md:w-3/4 lg:w-1/4 py-2 px-3 placeholder:text-gray-400 font-bold text-lg leading-tight focus:outline-none focus:shadow-outline"
+            id="new-post-title"
+            type="text"
+            placeholder="New Post Title"
+        /></div>
+
+    <div class="bg-green-500 text-gray-900 py-3 px-8 font-semibold rounded-b-md" style="min-height: 15vh;">
+        <textarea
+            name="post-content"
+            id="new-post-content"
+            rows="5"
+            placeholder="New Post Content"
+            class="bg-green-300 rounded-md resize-none w-full py-1 px-2"
+        ></textarea>
+        <div class="flex justify-center">
+
+            <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2"
+                type="submit"
+            >Submit</button>
+        </div>
+    </div>
+
+</form>
+
+<script src="/newForumPost.js"></script>

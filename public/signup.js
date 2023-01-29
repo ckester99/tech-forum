@@ -15,7 +15,7 @@ const signup = async (event) => {
                 method: "POST",
                 body: JSON.stringify({ username, password }),
                 headers: { "Content-Type": "application/json" },
-            }).then(() => document.location.replace("/"));
+            }).then(() => document.location.replace("/dashboard"));
         } else {
             alert("Failed to sign up");
         }
