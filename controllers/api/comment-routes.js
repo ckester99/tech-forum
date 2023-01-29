@@ -48,7 +48,6 @@ router.delete("/:id", withAuth, async (req, res) => {
         //need to verify that session user id matches user id on post
         const user_id = req.session.user_id;
         const commentData = await Comment.findByPk(req.params.id);
-
         if (user_id == commentData.user_id) {
             await Comment.destroy({ where: { id: req.params.id } });
             res.send("Comment deleted successfully!");
