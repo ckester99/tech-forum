@@ -1,5 +1,7 @@
 <h2 class="font-bold text-2xl inline-block mt-4 px-32 py-2 bg-gray-900 text-green-500 text-center relative left-1/2 rounded-full" style="transform:translateX(-50%)">My Posts and Comments</h2>
 
+{{> new-post}}
+
 {{#each posts_and_comments}}
     {{#if this.post_id}}
         {{> comment-card}}
